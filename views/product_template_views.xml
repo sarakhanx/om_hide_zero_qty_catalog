@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Inherit Product Template Search View -->
+        <record id="product_template_search_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <filter name="filter_to_sell" position="after">
+                    <filter string="In Stock Only" name="in_stock" domain="[('qty_available', '>', 0)]"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Inherit Product Template Kanban View -->
+        <record id="product_template_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.kanban.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <!-- Remove hard domain attribute to avoid conflicts -->
+            </field>
+        </record>
+
+        <!-- Inherit Product Template Tree View -->
+        <record id="product_template_tree_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <!-- Remove hard domain attribute to avoid conflicts -->
+            </field>
+        </record>
+
+        <!-- Create New Product Template Action -->
+        <record id="action_product_template_filtered" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_in_stock': 1}</field>
+            <field name="domain">[('qty_available', '>', 0)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No products found with stock quantity greater than zero.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_product_template_filtered"
+                  name="Products In Stock"
+                  action="action_product_template_filtered"
+                  parent="sale.product_menu_catalog"
+                  sequence="1"/>
+    </data>
+</odoo> 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="om_hide_zero_qty_catalog.ClipboardAlternative" owl="1">
+        <div class="o_clipboard_alternative">
+            <p class="text-center">คัดลอกข้อความข้างล่างในกรณีที่ clipboard ไม่ทำงาน:</p>
+            <textarea class="w-100" style="min-height: 100px; font-family: monospace;" t-esc="props.text"/>
+        </div>
+    </t>
+</templates> 

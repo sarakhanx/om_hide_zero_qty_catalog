@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Sales Catalog Search View -->
+    <record id="view_product_search_catalog_inherit_sale" model="ir.ui.view">
+        <field name="name">product.search.catalog.inherit.sale</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="sale.product_view_search_catalog"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="In Stock Only" name="in_stock" domain="[('qty_available', '>', 0)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

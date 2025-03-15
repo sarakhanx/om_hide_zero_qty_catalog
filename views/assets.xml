@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Using asset_bundle 'web.assets_web' directly -->
+    <template id="assets_web" name="om_hide_zero_qty_catalog assets" inherit_id="web.assets_web">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/om_hide_zero_qty_catalog/static/src/js/clipboard_fix.js"/>
+        </xpath>
+    </template>
+    
+    <!-- Add template for QWeb templates -->
+    <template id="assets_qweb" name="om_hide_zero_qty_catalog qweb templates" inherit_id="web.assets_qweb">
+        <xpath expr="." position="inside">
+            <t t-call-assets="om_hide_zero_qty_catalog.assets_qweb" t-js="false" t-css="false"/>
+        </xpath>
+    </template>
+</odoo> 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Global Access Rule for Product Templates -->
+        <record id="rule_product_template_global" model="ir.rule">
+            <field name="name">Global Product Template Access</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Sales-specific Rule for Product Templates -->
+        <record id="rule_product_template_sales" model="ir.rule">
+            <field name="name">Products with Stock in Sales Context</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="domain_force">[('sale_ok', '=', True), ('qty_available', '>', 0)]</field>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Global Access Rule for Product Variants -->
+        <record id="rule_product_variant_global" model="ir.rule">
+            <field name="name">Global Product Variant Access</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Sales-specific Rule for Product Variants -->
+        <record id="rule_product_variant_sales" model="ir.rule">
+            <field name="name">Product Variants with Stock in Sales Context</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="domain_force">[('sale_ok', '=', True), ('qty_available', '>', 0)]</field>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo> 

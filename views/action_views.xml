@@ -6,7 +6,7 @@
             <field name="name">Products</field>
             <field name="res_model">product.product</field>
             <field name="view_mode">kanban,tree,form</field>
-            <field name="domain">[('qty_available', '>', 0), ('sale_ok', '=', True)]</field>
+            <field name="domain">[('virtual_available', '>', 0), ('sale_ok', '=', True)]</field>
             <field name="context">{'search_default_filter_to_sell': 1}</field>
         </record>
 
@@ -15,7 +15,7 @@
             <field name="name">Product Variants</field>
             <field name="res_model">product.product</field>
             <field name="view_mode">kanban,tree,form</field>
-            <field name="domain">[('qty_available', '>', 0)]</field>
+            <field name="domain">[('virtual_available', '>', 0)]</field>
             <field name="context">{'search_default_filter_to_sell': 1}</field>
         </record>
 

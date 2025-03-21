@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
         
         # Only filter in sale order line selection context
         if self._is_sale_order_line_selection():
-            products = products.filtered(lambda p: p.sale_ok and p.qty_available > 0)
+            products = products.filtered(lambda p: p.sale_ok and p.virtual_available > 0)
         return super()._get_product_catalog_order_data(products, **kwargs)
 
     def _get_product_catalog_order_line_info(self, product_ids=None, **kwargs):
@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
         if product_ids is None and self._is_sale_order_line_selection():
             domain = [('sale_ok', '=', True)]
             if self._is_sale_order_line_selection():
-                domain.append(('qty_available', '>', 0))
+                domain.append(('virtual_available', '>', 0))
             products = ProductProduct.search(domain)
             product_ids = products.ids
             
@@ -48,8 +48,8 @@ class SaleOrder(models.Model):
                 else:
                     products = ProductProduct.browse(products.ids)
                 
-                # Filter saleable products with stock
-                filtered_products = products.filtered(lambda p: p.sale_ok and p.qty_available > 0)
+                # Filter saleable products with forecast stock
+                filtered_products = products.filtered(lambda p: p.sale_ok and p.virtual_available > 0)
                 result['products'] = filtered_products
                 
         return result 

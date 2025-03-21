@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.product_view_search_catalog"/>
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
-                <filter string="In Stock Only" name="in_stock" domain="[('qty_available', '>', 0)]"/>
+                <filter string="In Stock Only" name="in_stock" domain="[('virtual_available', '>', 0)]"/>
             </xpath>
         </field>
     </record>

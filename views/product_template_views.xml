@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_search_view"/>
             <field name="arch" type="xml">
                 <filter name="filter_to_sell" position="after">
-                    <filter string="In Stock Only" name="in_stock" domain="[('qty_available', '>', 0)]"/>
+                    <filter string="In Stock Only" name="in_stock" domain="[('virtual_available', '>', 0)]"/>
                 </filter>
             </field>
         </record>
@@ -40,10 +40,10 @@
             <field name="type">ir.actions.act_window</field>
             <field name="view_mode">kanban,tree,form,activity</field>
             <field name="context">{'search_default_in_stock': 1}</field>
-            <field name="domain">[('qty_available', '>', 0)]</field>
+            <field name="domain">[('virtual_available', '>', 0)]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    No products found with stock quantity greater than zero.
+                    No products found with forecast quantity greater than zero.
                 </p>
             </field>
         </record>

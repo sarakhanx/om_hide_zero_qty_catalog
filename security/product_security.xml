@@ -17,7 +17,7 @@
         <record id="rule_product_template_sales" model="ir.rule">
             <field name="name">Products with Stock in Sales Context</field>
             <field name="model_id" ref="product.model_product_template"/>
-            <field name="domain_force">[('sale_ok', '=', True), ('qty_available', '>', 0)]</field>
+            <field name="domain_force">[('sale_ok', '=', True), ('virtual_available', '>', 0)]</field>
             <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -41,7 +41,7 @@
         <record id="rule_product_variant_sales" model="ir.rule">
             <field name="name">Product Variants with Stock in Sales Context</field>
             <field name="model_id" ref="product.model_product_product"/>
-            <field name="domain_force">[('sale_ok', '=', True), ('qty_available', '>', 0)]</field>
+            <field name="domain_force">[('sale_ok', '=', True), ('virtual_available', '>', 0)]</field>
             <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
